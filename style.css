@@ -1,132 +1,475 @@
+/* =====================================================
+   COME PLAY HERE — Feuille de style (HTML + CSS uniquement)
+   Sommaire :
+   1. Variables (couleurs, polices)
+   2. Base (body, page, liens)
+   3. En-tête
+   4. Titres de section
+   5. Diaporama (sans JavaScript)
+   6. Média (vidéo principale + musique)
+   7. Cartes de liens
+   8. Galerie vidéo
+   9. Pied de page
+   10. Accessibilité (focus, animations réduites)
+   ===================================================== */
+
+
+/* ---------- 1. VARIABLES ---------- */
+:root {
+    --rose: #f303a7;          /* ton rose d'origine */
+    --rose-clair: #ff5fd0;
+    --jaune: #ffe600;         /* couleur des liens */
+    --rouge: #f80101;
+    --vert: #16c060;
+    --noir: #000000;
+    --fond: #14001f;          /* violet très sombre */
+    --surface: #220a33;       /* fond des cartes */
+    --blanc: #ffffff;
+
+    --police-titre: "Orbitron", "Arial Black", Arial, sans-serif;
+    --police-texte: "Rajdhani", "Trebuchet MS", Arial, sans-serif;
+}
+
+
+/* ---------- 2. BASE ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
-        background-color: rgb(243, 3, 167);
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-    border: 20px solid black;
-    font-size: 20px;
+    margin: 0;
+    min-height: 100vh;
+    border: 12px solid var(--noir);           /* cadre noir d'origine, en plus fin */
+    background-color: var(--fond);
+    background-image:
+        radial-gradient(ellipse at top, rgba(243, 3, 167, 0.35), transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: auto, 40px 40px, 40px 40px;
+    color: var(--blanc);
+    font-family: var(--police-texte);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+}
 
+.page {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+    padding: 28px 20px 40px;
+}
+
+a {
+    color: var(--jaune);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+
+/* ---------- 3. EN-TÊTE ---------- */
+.entete {
+    margin-bottom: 36px;
+}
+
+.entete__titre {
+    margin: 0 0 8px;
+    font-family: var(--police-titre);
+    font-size: clamp(2rem, 7vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--blanc);
+    /* effet néon : plusieurs ombres rose superposées */
+    text-shadow:
+        0 0 6px var(--rose-clair),
+        0 0 20px var(--rose),
+        0 0 44px var(--rose);
+}
+
+.entete__sous-titre {
+    margin: 0 0 4px;
+    font-family: var(--police-titre);
+    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+    font-weight: 700;
+}
+
+.entete__auteur {
+    margin: 0 0 12px;
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    font-weight: 700;
+    color: var(--jaune);
+}
+
+.entete__description {
+    max-width: 34em;
+    margin: 0 auto;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* ---------- 4. TITRES DE SECTION ---------- */
+.section__titre {
+    margin: 0 0 22px;
+    font-family: var(--police-titre);
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    font-weight: 700;
+}
+
+/* petite barre rose sous chaque titre */
+.section__titre::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 4px;
+    margin: 10px auto 0;
+    border-radius: 2px;
+    background-color: var(--rose);
+}
+
+.media,
+.sites,
+.galerie {
+    margin-top: 56px;
+}
+
+
+/* ---------- 5. DIAPORAMA (sans JavaScript) ----------
+   Fonctionnement : 6 boutons radio cachés mémorisent l'image active.
+   Les flèches et les points sont des <label> reliés à ces boutons.
+   Le sélecteur  #diapo1:checked ~ ...  veut dire :
+   "si le bouton radio n°1 est coché, alors affiche l'image n°1". */
+.diaporama {
+    position: relative;
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+/* On cache les boutons radio mais ils restent utilisables au clavier (flèches gauche/droite) */
+.diaporama__radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.diaporama__fenetre {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 5px solid var(--rose);
+    border-radius: 14px;
+    background-color: var(--noir);
+    box-shadow:
+        0 0 0 4px var(--noir),
+        0 0 28px rgba(243, 3, 167, 0.65);
+}
+
+.diaporama__slide {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.diaporama__lien {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.diaporama__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Légende en bas de l'image */
+.diaporama__legende {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 46px 70px 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    font-family: var(--police-titre);
+    font-size: clamp(0.85rem, 2.6vw, 1.2rem);
+    font-weight: 700;
+    pointer-events: none;      /* le clic passe à travers et ouvre le lien */
+}
+
+/* Flèches précédent / suivant */
+.diaporama__bouton {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 2px solid var(--blanc);
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--blanc);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: background-color 0.2s ease;
+}
+
+.diaporama__bouton:hover {
+    background-color: var(--rouge);
+}
+
+.diaporama__bouton--precedent {
+    left: 12px;
+}
+
+.diaporama__bouton--suivant {
+    right: 12px;
+}
+
+/* Points sous le diaporama */
+.diaporama__indicateurs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.diaporama__indicateur {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--blanc);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.diaporama__indicateur:hover {
+    background-color: var(--rose-clair);
+}
+
+/* --- Image active : on affiche la slide et on colore le point correspondant --- */
+#diapo1:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(1),
+#diapo2:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(2),
+#diapo3:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(3),
+#diapo4:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(4),
+#diapo5:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(5),
+#diapo6:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(6) {
+    opacity: 1;
+    visibility: visible;
+}
+
+#diapo1:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(1),
+#diapo2:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(2),
+#diapo3:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(3),
+#diapo4:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(4),
+#diapo5:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(5),
+#diapo6:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(6) {
+    background-color: var(--jaune);
+    border-color: var(--jaune);
+    transform: scale(1.25);
+}
+
+
+/* ---------- 6. MÉDIA (vidéo principale + musique) ---------- */
+.media__carte {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    padding: 18px;
+    border: 4px solid var(--noir);
+    border-radius: 14px;
+    background-color: var(--surface);
+    box-shadow: 0 0 0 3px var(--rose);
+}
+
+.media__video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    background-color: var(--noir);
+}
+
+.media__audio {
+    margin-top: 16px;
+}
+
+.media__audio-texte {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.media__audio audio {
+    width: 100%;
+}
+
+
+/* ---------- 7. CARTES DE LIENS ---------- */
+.sites__grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    align-items: start;
+}
+
+.carte {
+    --accent: var(--rose-clair);         /* chaque carte change cette variable */
+    padding: 20px 20px 22px;
+    border: 3px solid var(--noir);
+    border-top: 6px solid var(--accent);
+    border-radius: 12px;
+    background-color: var(--surface);
+    text-align: left;
+}
+
+.carte--vert  { --accent: var(--vert); }
+.carte--rose  { --accent: var(--rose-clair); }
+.carte--rouge { --accent: #ff4d4d; }
+
+.carte__titre {
+    margin: 0 0 14px;
+    font-family: var(--police-titre);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.carte__liste {
+    margin: 0;
+    padding-left: 1.7rem;
+}
+
+.carte__liste--puces   { list-style-type: disc; }
+.carte__liste--numeros { list-style-type: decimal; }
+.carte__liste--carres  { list-style-type: square; }
+
+.carte__liste li {
+    margin: 8px 0;
+    padding-left: 4px;
+    font-weight: 700;
+}
+
+.carte__liste li::marker {
+    color: var(--accent);
+}
+
+.carte__liste a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.07);
+    transition: background-color 0.2s ease;
+}
+
+.carte__liste a:hover {
+    background-color: rgba(255, 230, 0, 0.16);
+}
+
+
+/* ---------- 8. GALERIE VIDÉO ---------- */
+.galerie__grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.galerie__video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;                 /* la vidéo verticale n'est pas déformée */
+    border: 3px solid var(--noir);
+    border-radius: 10px;
+    background-color: var(--noir);
+    box-shadow: 0 0 0 2px var(--rouge);
+}
+
+
+/* ---------- 9. PIED DE PAGE ---------- */
+.pied {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.pied p {
+    margin: 0;
+}
+
+
+/* ---------- 10. ACCESSIBILITÉ ---------- */
+
+/* Contour visible quand on navigue au clavier */
+a:focus-visible {
+    outline: 3px solid var(--jaune);
+    outline-offset: 3px;
+}
+
+.diaporama__radio:focus-visible ~ .diaporama__fenetre {
+    outline: 3px solid var(--jaune);
+    outline-offset: 4px;
+}
+
+/* Petits écrans (téléphone) */
+@media (max-width: 600px) {
+    body {
+        border-width: 8px;
+        font-size: 1.1rem;
     }
-    a {
-        color: yellow;
-        text-decoration: none;
+
+    .page {
+        padding: 20px 12px 32px;
     }
-    a:hover {
-        text-decoration: underline;
+
+    .diaporama__fenetre {
+        aspect-ratio: 4 / 3;
     }
-    .instruction-musique {
-        margin: 20px auto 10px;
-        font-size: 16px;
+
+    .diaporama__legende {
+        padding: 36px 56px 12px;
     }
-    .musique-arriere-plan {
-        display: none;
+
+    .diaporama__bouton {
+        width: 38px;
+        height: 38px;
+        font-size: 1.15rem;
     }
-    .liste1 { background-color: #f80101;
-        list-style-type: square;
-        padding: 19px;
+
+    .diaporama__bouton--precedent {
+        left: 8px;
     }
-    .liste2 { background-color: black;
-        list-style-type: decimal;
-        padding: 19px;
+
+    .diaporama__bouton--suivant {
+        right: 8px;
     }
-    .liste3 { background-color: green;
-        list-style-type: disc;
-        padding: 19px;
+}
+
+/* Respecte les personnes qui réduisent les animations dans leur système */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
     }
-  .diaporama {
-      position: relative;
-      width: min(900px, 100%);
-      margin: 30px auto;
-      padding: 0 55px 45px;
-      box-sizing: border-box;
-  }
-
-  .diaporama__fenetre {
-      position: relative;
-      overflow: hidden;
-      border: 6px solid black;
-      border-radius: 12px;
-      background: #111;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.45);
-  }
-
-  .diaporama__lien {
-      display: none;
-  }
-
-  .diaporama__lien--active {
-      display: block;
-  }
-
-  .diaporama__image {
-      display: block;
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-  }
-
-  .diaporama__bouton {
-      position: absolute;
-      top: 50%;
-      z-index: 1;
-      width: 42px;
-      height: 42px;
-      border: 2px solid white;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      font-size: 24px;
-      line-height: 1;
-      cursor: pointer;
-      transform: translateY(-50%);
-  }
-
-  .diaporama__bouton:hover,
-  .diaporama__bouton:focus-visible {
-      background-color: #f80101;
-  }
-
-  .diaporama__bouton--precedent {
-      left: 5px;
-  }
-
-  .diaporama__bouton--suivant {
-      right: 5px;
-  }
-
-  .diaporama__indicateurs {
-      position: absolute;
-      bottom: 5px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-  }
-
-  .diaporama__indicateur {
-      width: 13px;
-      height: 13px;
-      padding: 0;
-      border: 2px solid white;
-      border-radius: 50%;
-      background: transparent;
-      cursor: pointer;
-  }
-
-  .diaporama__indicateur--active,
-  .diaporama__indicateur:hover,
-  .diaporama__indicateur:focus-visible {
-      background: yellow;
-  }
-
-  @media (max-width: 600px) {
-      .diaporama {
-          padding-right: 42px;
-          padding-left: 42px;
-      }
-
-      .diaporama__image {
-          height: 260px;
-      }
-  }
+}

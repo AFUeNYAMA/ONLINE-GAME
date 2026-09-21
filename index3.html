@@ -4,98 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Come Play Here : une sélection de sites de gaming en ligne par Seka Alexandre Davis.">
     <title>Come Play Here</title>
+
+    <!-- Polices : Orbitron (titres) et Rajdhani (texte). Si elles ne chargent pas, le navigateur utilise une police de secours. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div>
-        <h1 style="color: blue;">👾ONLINE GAME🎮</h1>
-        <h2>Bienvenue sur Mon Site👾</h2>
-        <h3>MOI C'est SEKA ALEXANDRE DAVIS😎</h3>
-        <h4>Ce Site Vous Redirige Vers Les Meilleurs Site De Gaming En Ligne🏴‍☠️</h4>
-        <section class="diaporama" aria-label="Sites de gaming recommandés">
-            <div class="diaporama__fenetre">
-                <a class="diaporama__lien" href="https://fitgirl-repacks.site/forza-horizon-6/" target="_blank"
-                    rel="noopener noreferrer">
-                    <img class="diaporama__image" src="IMAGE/Forza-Horizon-6.webp" alt="Forza Horizon 6">
-                </a>
-                <a class="diaporama__lien" href="https://fitgirl-repacks.site/marvels-spider-man-2/" target="_blank"
-                    rel="noopener noreferrer">
-                    <img class="diaporama__image" src="IMAGE/marvel_s_spider_man_2_desktop_wallpaper_by_crillyboy25_dg8wiuo-pre.jpg"
-                        alt="Kenpachi Zaraki de Bleach">
-                </a>
-                <a class="diaporama__lien" href="https://fitgirl-repacks.site/ea-sports-fc-26/" target="_blank" rel="noopener noreferrer">
-                    <img class="diaporama__image" src="IMAGE/wp15596323.jpg" alt="Illustration de jeu vidéo">
-                </a>
-                <a class="diaporama__lien" href="https://fitgirl-repacks.site/call-of-duty-black-ops-cold-war/" target="_blank"
-                    rel="noopener noreferrer">
-                    <img class="diaporama__image"
-                        src="IMAGE/R.jpg"
-                        alt="Shidou de Blue Lock">
-                </a>
-                <a class="diaporama__lien" href="https://fitgirl-repacks.site/nba-2k27/" target="_blank"
-                    rel="noopener noreferrer">
-                    <img class="diaporama__image" src="IMAGE/1786716056-8938-card.jpg"
-                        alt="Illustration de jeu vidéo">
-                </a>
-                <a class="diaporama__lien" href="https://fitgirl-repacks.site/marvels-avengers/" target="_blank" rel="noopener noreferrer">
-                    <img class="diaporama__image" src="IMAGE/0.jpg" alt="Illustration de jeu vidéo">
-                </a>
-            </div>
-            <button class="diaporama__bouton diaporama__bouton--precedent" type="button"
-                aria-label="Image précédente">&#10094;</button>
-            <button class="diaporama__bouton diaporama__bouton--suivant" type="button"
-                aria-label="Image suivante">&#10095;</button>
-            <div class="diaporama__indicateurs" aria-label="Choisir une image"></div>
-        </section>
+    <div class="page">
 
-        <p class="instruction-musique">Tapez <strong>MUSIC</strong> pour lancer la vidéo et la musique en boucle.</p>
-        <audio id="audio-musique" class="musique-arriere-plan" aria-hidden="true" loop preload="auto">
-            <source src="AUDIO/AUDIO 1.mp3" type="audio/mpeg">
-        </audio>
-        <video id="video-principale" width="320" height="240" controls loop preload="auto">
-                <source src="VIDEO/video4.mp4" type="video/mp4">
-        </video>
-        <div class="liste3">
-            <ul>
-                <a href="https://www.poki.com/" target="_blank">
-                    <li>POKI</li>
-                </a>
-                <a href="https://www.playhop.com/" target="_blank">
-                    <li>PLAYHOP</li>
-                </a>
-            </ul>
-        </div>
-        <div class="liste2">
-            <ol>
-                <a href="https://www.crazygames.com/" target="_blank">
-                    <li>CRAZY GAMES</li>
-                </a>
-                <a href="https://arcade.lemonde.fr/" target="_blank">
-                    <li>ARCADE LE MONDE</li>
-                </a>
-                <a href="https://www.jeux.fr/" target="_blank">
-                    <li>JEUX.FR</li>
-                </a>
-            </ol>
-        </div>
-        <div class="liste1">
-            <video width="320" height="240" controls>
-                <source src="VIDEO/video1.mp4" type="video/mp4">
-            </video>
-            <video width="320" height="240" controls>
-                <source src="VIDEO/video2.mp4" type="video/mp4">
-            </video>
-            <video width="220" height="320" controls>
-                <source src="VIDEO/video3.mp4" type="video/mp4">
-            </video>
-            <a href="https://www.jeuxvideo.com/" target="_blank">
-                <li>JEUXVIDEO.COM</li>
-            </a>
-        </div>
+        <!-- ========== EN-TÊTE ========== -->
+        <header class="entete">
+            <h1 class="entete__titre">👾 ONLINE GAME 🎮</h1>
+            <h2 class="entete__sous-titre">Bienvenue sur mon site 👾</h2>
+            <h3 class="entete__auteur">Moi, c'est SEKA ALEXANDRE DAVIS 😎</h3>
+            <h4 class="entete__description">Ce site vous redirige vers les meilleurs sites de gaming en ligne 🏴‍☠️</h4>
+        </header>
+
+        <main>
+
+            <!-- ========== DIAPORAMA (100 % HTML + CSS) ==========
+                 Principe : chaque bouton radio mémorise l'image affichée.
+                 Les flèches et les points sont des <label> qui cochent le bon bouton radio. -->
+            <section class="diaporama" aria-label="Jeux à la une">
+                <input class="diaporama__radio" type="radio" name="diapo" id="diapo1" checked aria-label="Image 1">
+                <input class="diaporama__radio" type="radio" name="diapo" id="diapo2" aria-label="Image 2">
+                <input class="diaporama__radio" type="radio" name="diapo" id="diapo3" aria-label="Image 3">
+                <input class="diaporama__radio" type="radio" name="diapo" id="diapo4" aria-label="Image 4">
+                <input class="diaporama__radio" type="radio" name="diapo" id="diapo5" aria-label="Image 5">
+                <input class="diaporama__radio" type="radio" name="diapo" id="diapo6" aria-label="Image 6">
+
+                <div class="diaporama__fenetre">
+
+                    <figure class="diaporama__slide">
+                        <a class="diaporama__lien" href="https://fitgirl-repacks.site/forza-horizon-6/" target="_blank" rel="noopener noreferrer">
+                            <img class="diaporama__image" src="IMAGE/Forza-Horizon-6.webp" alt="Forza Horizon 6">
+                        </a>
+                        <figcaption class="diaporama__legende">Forza Horizon 6</figcaption>
+                        <label class="diaporama__bouton diaporama__bouton--precedent" for="diapo6" aria-label="Image précédente">&#10094;</label>
+                        <label class="diaporama__bouton diaporama__bouton--suivant" for="diapo2" aria-label="Image suivante">&#10095;</label>
+                    </figure>
+
+                    <figure class="diaporama__slide">
+                        <a class="diaporama__lien" href="https://fitgirl-repacks.site/marvels-spider-man-2/" target="_blank" rel="noopener noreferrer">
+                            <img class="diaporama__image" src="IMAGE/marvel_s_spider_man_2_desktop_wallpaper_by_crillyboy25_dg8wiuo-pre.jpg" alt="Marvel's Spider-Man 2">
+                        </a>
+                        <figcaption class="diaporama__legende">Marvel's Spider-Man 2</figcaption>
+                        <label class="diaporama__bouton diaporama__bouton--precedent" for="diapo1" aria-label="Image précédente">&#10094;</label>
+                        <label class="diaporama__bouton diaporama__bouton--suivant" for="diapo3" aria-label="Image suivante">&#10095;</label>
+                    </figure>
+
+                    <figure class="diaporama__slide">
+                        <a class="diaporama__lien" href="https://fitgirl-repacks.site/ea-sports-fc-26/" target="_blank" rel="noopener noreferrer">
+                            <img class="diaporama__image" src="IMAGE/wp15596323.jpg" alt="EA Sports FC 26">
+                        </a>
+                        <figcaption class="diaporama__legende">EA Sports FC 26</figcaption>
+                        <label class="diaporama__bouton diaporama__bouton--precedent" for="diapo2" aria-label="Image précédente">&#10094;</label>
+                        <label class="diaporama__bouton diaporama__bouton--suivant" for="diapo4" aria-label="Image suivante">&#10095;</label>
+                    </figure>
+
+                    <figure class="diaporama__slide">
+                        <a class="diaporama__lien" href="https://fitgirl-repacks.site/call-of-duty-black-ops-cold-war/" target="_blank" rel="noopener noreferrer">
+                            <img class="diaporama__image" src="IMAGE/R.jpg" alt="Call of Duty : Black Ops Cold War">
+                        </a>
+                        <figcaption class="diaporama__legende">Call of Duty : Black Ops Cold War</figcaption>
+                        <label class="diaporama__bouton diaporama__bouton--precedent" for="diapo3" aria-label="Image précédente">&#10094;</label>
+                        <label class="diaporama__bouton diaporama__bouton--suivant" for="diapo5" aria-label="Image suivante">&#10095;</label>
+                    </figure>
+
+                    <figure class="diaporama__slide">
+                        <a class="diaporama__lien" href="https://fitgirl-repacks.site/nba-2k27/" target="_blank" rel="noopener noreferrer">
+                            <img class="diaporama__image" src="IMAGE/1786716056-8938-card.jpg" alt="NBA 2K27">
+                        </a>
+                        <figcaption class="diaporama__legende">NBA 2K27</figcaption>
+                        <label class="diaporama__bouton diaporama__bouton--precedent" for="diapo4" aria-label="Image précédente">&#10094;</label>
+                        <label class="diaporama__bouton diaporama__bouton--suivant" for="diapo6" aria-label="Image suivante">&#10095;</label>
+                    </figure>
+
+                    <figure class="diaporama__slide">
+                        <a class="diaporama__lien" href="https://fitgirl-repacks.site/marvels-avengers/" target="_blank" rel="noopener noreferrer">
+                            <img class="diaporama__image" src="IMAGE/0.jpg" alt="Marvel's Avengers">
+                        </a>
+                        <figcaption class="diaporama__legende">Marvel's Avengers</figcaption>
+                        <label class="diaporama__bouton diaporama__bouton--precedent" for="diapo5" aria-label="Image précédente">&#10094;</label>
+                        <label class="diaporama__bouton diaporama__bouton--suivant" for="diapo1" aria-label="Image suivante">&#10095;</label>
+                    </figure>
+
+                </div>
+
+                <!-- Les points : un par image -->
+                <div class="diaporama__indicateurs">
+                    <label class="diaporama__indicateur" for="diapo1" title="Image 1"></label>
+                    <label class="diaporama__indicateur" for="diapo2" title="Image 2"></label>
+                    <label class="diaporama__indicateur" for="diapo3" title="Image 3"></label>
+                    <label class="diaporama__indicateur" for="diapo4" title="Image 4"></label>
+                    <label class="diaporama__indicateur" for="diapo5" title="Image 5"></label>
+                    <label class="diaporama__indicateur" for="diapo6" title="Image 6"></label>
+                </div>
+            </section>
+
+            <!-- ========== MUSIQUE + VIDÉO PRINCIPALE ==========
+                 Les navigateurs bloquent le lancement automatique du son :
+                 le lecteur est donc visible et c'est le visiteur qui appuie sur lecture. -->
+            <section class="media" aria-labelledby="titre-media">
+                <h2 class="section__titre" id="titre-media">Ambiance</h2>
+
+                <div class="media__carte">
+                    <video class="media__video" controls loop preload="metadata" playsinline>
+                        <source src="VIDEO/video4.mp4" type="video/mp4">
+                        Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+
+                    <div class="media__audio">
+                        <p class="media__audio-texte">Musique d'ambiance en boucle</p>
+                        <audio id="audio-musique" controls loop preload="none">
+                            <source src="AUDIO/AUDIO 1.mp3" type="audio/mpeg">
+                            Votre navigateur ne peut pas lire ce son.
+                        </audio>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== LIENS VERS LES SITES DE JEUX ========== -->
+            <section class="sites" aria-labelledby="titre-sites">
+                <h2 class="section__titre" id="titre-sites">Où jouer ?</h2>
+
+                <div class="sites__grille">
+
+                    <nav class="carte carte--vert" aria-labelledby="titre-instantane">
+                        <h3 class="carte__titre" id="titre-instantane">Jeux instantanés</h3>
+                        <ul class="carte__liste carte__liste--puces">
+                            <li><a href="https://www.poki.com/" target="_blank" rel="noopener noreferrer">POKI</a></li>
+                            <li><a href="https://www.playhop.com/" target="_blank" rel="noopener noreferrer">PLAYHOP</a></li>
+                        </ul>
+                    </nav>
+
+                    <nav class="carte carte--rose" aria-labelledby="titre-plateformes">
+                        <h3 class="carte__titre" id="titre-plateformes">Grandes plateformes</h3>
+                        <ol class="carte__liste carte__liste--numeros">
+                            <li><a href="https://www.crazygames.com/" target="_blank" rel="noopener noreferrer">CRAZY GAMES</a></li>
+                            <li><a href="https://arcade.lemonde.fr/" target="_blank" rel="noopener noreferrer">ARCADE LE MONDE</a></li>
+                            <li><a href="https://www.jeux.fr/" target="_blank" rel="noopener noreferrer">JEUX.FR</a></li>
+                        </ol>
+                    </nav>
+
+                    <nav class="carte carte--rouge" aria-labelledby="titre-actu">
+                        <h3 class="carte__titre" id="titre-actu">Actualités gaming</h3>
+                        <ul class="carte__liste carte__liste--carres">
+                            <li><a href="https://www.jeuxvideo.com/" target="_blank" rel="noopener noreferrer">JEUXVIDEO.COM</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </section>
+
+            <!-- ========== GALERIE VIDÉO ========== -->
+            <section class="galerie" aria-labelledby="titre-galerie">
+                <h2 class="section__titre" id="titre-galerie">Galerie vidéo</h2>
+
+                <div class="galerie__grille">
+                    <video class="galerie__video" controls preload="metadata" playsinline>
+                        <source src="VIDEO/video1.mp4" type="video/mp4">
+                        Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+                    <video class="galerie__video" controls preload="metadata" playsinline>
+                        <source src="VIDEO/video2.mp4" type="video/mp4">
+                        Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+                    <video class="galerie__video" controls preload="metadata" playsinline>
+                        <source src="VIDEO/video3.mp4" type="video/mp4">
+                        Votre navigateur ne peut pas lire cette vidéo.
+                    </video>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="pied">
+            <p>© 2026 Seka Alexandre Davis — Come Play Here</p>
+        </footer>
+
     </div>
-    <script src="diaporama.js" defer></script>
 </body>
 
 </html>
