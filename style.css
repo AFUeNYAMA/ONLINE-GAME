@@ -1,69 +1,28 @@
-/* =====================================================
-   COME PLAY HERE — Feuille de style (HTML + CSS uniquement)
-   Sommaire :
-   1. Variables (couleurs, polices)
-   2. Base (body, page, liens)
-   3. En-tête
-   4. Titres de section
-   5. Diaporama (sans JavaScript)
-   6. Média (vidéo principale + musique)
-   7. Cartes de liens
-   8. Galerie vidéo
-   9. Pied de page
-   10. Accessibilité (focus, animations réduites)
-   ===================================================== */
-
-
-/* ---------- 1. VARIABLES ---------- */
-:root {
-    --rose: #f303a7;          /* ton rose d'origine */
-    --rose-clair: #ff5fd0;
-    --jaune: #ffe600;         /* couleur des liens */
-    --rouge: #f80101;
-    --vert: #16c060;
-    --noir: #000000;
-    --fond: #14001f;          /* violet très sombre */
-    --surface: #220a33;       /* fond des cartes */
-    --blanc: #ffffff;
-
-    --police-titre: "Orbitron", "Arial Black", Arial, sans-serif;
-    --police-texte: "Rajdhani", "Trebuchet MS", Arial, sans-serif;
-}
-
-
-/* ---------- 2. BASE ---------- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
 body {
     margin: 0;
-    min-height: 100vh;
-    border: 12px solid var(--noir);           /* cadre noir d'origine, en plus fin */
-    background-color: var(--fond);
+    background-color: #14001f;
     background-image:
-        radial-gradient(ellipse at top, rgba(243, 3, 167, 0.35), transparent 60%),
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: auto, 40px 40px, 40px 40px;
-    color: var(--blanc);
-    font-family: var(--police-texte);
+        linear-gradient(rgba(255, 95, 208, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 95, 208, 0.25) 1px, transparent 1px);
+    background-size: 40px 40px;
+    filter: drop-shadow(0 0 3px rgba(255, 95, 208, 0.3));
+    color: #ffffff;
+    font-family: "Rajdhani", "Trebuchet MS", Arial, sans-serif;
     font-size: 1.2rem;
-    font-weight: 500;
     line-height: 1.5;
     text-align: center;
+    border: 12px solid #000000;
 }
 
 .page {
-    width: min(1000px, 100%);
+    max-width: 1000px;
     margin: 0 auto;
     padding: 28px 20px 40px;
 }
 
 a {
-    color: var(--jaune);
+    color: #ffe600;
     text-decoration: none;
 }
 
@@ -76,337 +35,344 @@ video {
     max-width: 100%;
 }
 
+/* Titre de chaque grande section (Ambiance, Où jouer ?, Galerie vidéo) */
+.titre-section {
+    font-family: "Orbitron", "Arial Black", Arial, sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
 
-/* ---------- 3. EN-TÊTE ---------- */
+
+/* ---------- 2. EN-TÊTE ---------- */
+
 .entete {
     margin-bottom: 36px;
 }
 
-.entete__titre {
-    margin: 0 0 8px;
-    font-family: var(--police-titre);
-    font-size: clamp(2rem, 7vw, 3.8rem);
-    font-weight: 900;
-    line-height: 1.1;
-    color: var(--blanc);
-    /* effet néon : plusieurs ombres rose superposées */
+.titre-principal {
+    font-family: "Orbitron", "Arial Black", Arial, sans-serif;
+    font-size: 5rem;
+    color: #ffffff;
+    filter: drop-shadow(0 0 3px rgba(255, 95, 208, 0.3));
     text-shadow:
-        0 0 6px var(--rose-clair),
-        0 0 20px var(--rose),
-        0 0 44px var(--rose);
+        0 0 8px #ff5fd0,
+        0 0 24px #f2020e;
 }
 
-.entete__sous-titre {
-    margin: 0 0 4px;
-    font-family: var(--police-titre);
-    font-size: clamp(1.1rem, 3.5vw, 1.6rem);
-    font-weight: 700;
+.sous-titre {
+    font-family: "Orbitron", "Arial Black", Arial, sans-serif;
+    font-size: 2rem;*
 }
 
-.entete__auteur {
-    margin: 0 0 12px;
-    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
-    font-weight: 700;
-    color: var(--jaune);
+.auteur {
+    color: #ffe600;
+    font-size: 1.6rem;
 }
 
-.entete__description {
-    max-width: 34em;
+.description {
+    max-width: 500px;
     margin: 0 auto;
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
+    color: #e6e6e6;
 }
 
 
-/* ---------- 4. TITRES DE SECTION ---------- */
-.section__titre {
-    margin: 0 0 22px;
-    font-family: var(--police-titre);
-    font-size: clamp(1.3rem, 4vw, 1.7rem);
-    font-weight: 700;
-}
 
-/* petite barre rose sous chaque titre */
-.section__titre::after {
-    content: "";
-    display: block;
-    width: 64px;
-    height: 4px;
-    margin: 10px auto 0;
-    border-radius: 2px;
-    background-color: var(--rose);
-}
-
-.media,
-.sites,
-.galerie {
-    margin-top: 56px;
-}
-
-
-/* ---------- 5. DIAPORAMA (sans JavaScript) ----------
-   Fonctionnement : 6 boutons radio cachés mémorisent l'image active.
-   Les flèches et les points sont des <label> reliés à ces boutons.
-   Le sélecteur  #diapo1:checked ~ ...  veut dire :
-   "si le bouton radio n°1 est coché, alors affiche l'image n°1". */
 .diaporama {
-    position: relative;
-    width: min(900px, 100%);
-    margin: 0 auto;
+    margin-top: 56px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    position: center;
+    filter: drop-shadow(0 0 3px rgba(255, 95, 208, 0.3));
 }
 
-/* On cache les boutons radio mais ils restent utilisables au clavier (flèches gauche/droite) */
-.diaporama__radio {
+.radio-cache {
     position: absolute;
     width: 1px;
-    height: 1px;
-    margin: 0;
+    height: 2px;
     opacity: 0;
-    pointer-events: none;
 }
 
-.diaporama__fenetre {
+.cadre-diaporama {
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    border: 5px solid var(--rose);
+    border: 5px solid #f2020e;
     border-radius: 14px;
-    background-color: var(--noir);
-    box-shadow:
-        0 0 0 4px var(--noir),
-        0 0 28px rgba(243, 3, 167, 0.65);
+    background-color: #000000;
 }
 
-.diaporama__slide {
+.image-diapo {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     margin: 0;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s;
+    transition: opacity 0.5s;
 }
 
-.diaporama__lien {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.diaporama__image {
-    display: block;
+.image-diapo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* Légende en bas de l'image */
-.diaporama__legende {
+.legende {
     position: absolute;
+    left: 0;
     right: 0;
     bottom: 0;
-    left: 0;
-    padding: 46px 70px 16px;
+    padding: 40px 60px 16px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-    font-family: var(--police-titre);
-    font-size: clamp(0.85rem, 2.6vw, 1.2rem);
-    font-weight: 700;
-    pointer-events: none;      /* le clic passe à travers et ouvre le lien */
+    font-family: "Orbitron", "Arial Black", Arial, sans-serif;
+    font-size: 1.1rem;
 }
 
-/* Flèches précédent / suivant */
-.diaporama__bouton {
+.bouton {
     position: absolute;
     top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
-    border: 2px solid var(--blanc);
+    border: 2px solid #ffffff;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.7);
-    color: var(--blanc);
-    font-size: 1.4rem;
-    line-height: 1;
+    color: #ffffff;
+    font-size: 1.3rem;
     cursor: pointer;
-    transform: translateY(-50%);
-    transition: background-color 0.2s ease;
 }
 
-.diaporama__bouton:hover {
-    background-color: var(--rouge);
+.bouton:hover {
+    background-color: #f80101;
 }
 
-.diaporama__bouton--precedent {
+.bouton-precedent {
     left: 12px;
 }
 
-.diaporama__bouton--suivant {
+.bouton-suivant {
     right: 12px;
 }
 
-/* Points sous le diaporama */
-.diaporama__indicateurs {
+.points {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 16px;
 }
 
-.diaporama__indicateur {
+.point {
     width: 16px;
     height: 16px;
-    border: 2px solid var(--blanc);
+    border: 2px solid #ffffff;
     border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.diaporama__indicateur:hover {
-    background-color: var(--rose-clair);
+.point:hover {
+    background-color: #ff5fd0;
 }
 
-/* --- Image active : on affiche la slide et on colore le point correspondant --- */
-#diapo1:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(1),
-#diapo2:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(2),
-#diapo3:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(3),
-#diapo4:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(4),
-#diapo5:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(5),
-#diapo6:checked ~ .diaporama__fenetre .diaporama__slide:nth-child(6) {
+/* C'est ici que la magie du diaporama se passe :               */
+/* quand un bouton radio est coché, on affiche l'image liée      */
+/* et on colore le point qui lui correspond.                     */
+#diapo1:checked ~ .cadre-diaporama #slide1 {
     opacity: 1;
     visibility: visible;
 }
 
-#diapo1:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(1),
-#diapo2:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(2),
-#diapo3:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(3),
-#diapo4:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(4),
-#diapo5:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(5),
-#diapo6:checked ~ .diaporama__indicateurs .diaporama__indicateur:nth-child(6) {
-    background-color: var(--jaune);
-    border-color: var(--jaune);
-    transform: scale(1.25);
+#diapo2:checked ~ .cadre-diaporama #slide2 {
+    opacity: 1;
+    visibility: visible;
+}
+
+#diapo3:checked ~ .cadre-diaporama #slide3 {
+    opacity: 1;
+    visibility: visible;
+}
+
+#diapo4:checked ~ .cadre-diaporama #slide4 {
+    opacity: 1;
+    visibility: visible;
+}
+
+#diapo5:checked ~ .cadre-diaporama #slide5 {
+    opacity: 1;
+    visibility: visible;
+}
+
+#diapo6:checked ~ .cadre-diaporama #slide6 {
+    opacity: 1;
+    visibility: visible;
+}
+
+#diapo1:checked ~ .points #point1,
+#diapo2:checked ~ .points #point2,
+#diapo3:checked ~ .points #point3,
+#diapo4:checked ~ .points #point4,
+#diapo5:checked ~ .points #point5,
+#diapo6:checked ~ .points #point6 {
+    background-color: #ffe600;
+    border-color: #ffe600;
 }
 
 
-/* ---------- 6. MÉDIA (vidéo principale + musique) ---------- */
-.media__carte {
-    width: min(680px, 100%);
+
+.ambiance {
+    margin-top: 56px;
+}
+
+.carte-media {
+    max-width: 680px;
     margin: 0 auto;
     padding: 18px;
-    border: 4px solid var(--noir);
+    border: 4px solid #000000;
     border-radius: 14px;
-    background-color: var(--surface);
-    box-shadow: 0 0 0 3px var(--rose);
+    background-color: #220a33;
 }
 
-.media__video {
-    display: block;
+.video-principale {
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 8px;
-    background-color: var(--noir);
+    background-color: #000000;
 }
 
-.media__audio {
+.zone-audio {
     margin-top: 16px;
 }
 
-.media__audio-texte {
-    margin: 0 0 8px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
+.texte-audio {
+    color: #e6e6e6;
+    margin-bottom: 8px;
 }
 
-.media__audio audio {
+.zone-audio audio {
     width: 100%;
 }
 
 
-/* ---------- 7. CARTES DE LIENS ---------- */
-.sites__grille {
+/* ---------- 5. CARTES DE LIENS ---------- */
+
+.sites {
+    margin-top: 56px;
+}
+
+.grille-liens {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 22px;
-    align-items: start;
 }
 
 .carte {
-    --accent: var(--rose-clair);         /* chaque carte change cette variable */
-    padding: 20px 20px 22px;
-    border: 3px solid var(--noir);
-    border-top: 6px solid var(--accent);
-    border-radius: 12px;
-    background-color: var(--surface);
     text-align: left;
+    padding: 20px;
+    border: 3px solid #000000;
+    border-radius: 12px;
+    background-color: #220a33;
 }
 
-.carte--vert  { --accent: var(--vert); }
-.carte--rose  { --accent: var(--rose-clair); }
-.carte--rouge { --accent: #ff4d4d; }
+.carte-verte {
+    border-top: 6px solid #16c060;
+}
 
-.carte__titre {
-    margin: 0 0 14px;
-    font-family: var(--police-titre);
+.carte-rose {
+    border-top: 6px solid #ff5fd0;
+}
+
+.carte-rouge {
+    border-top: 6px solid #ff4d4d;
+}
+
+.titre-carte {
+    font-family: "Orbitron", "Arial Black", Arial, sans-serif;
     font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--accent);
+    margin-bottom: 14px;
 }
 
-.carte__liste {
+.carte-verte .titre-carte {
+    color: #16c060;
+}
+
+.carte-rose .titre-carte {
+    color: #ff5fd0;
+}
+
+.carte-rouge .titre-carte {
+    color: #ff4d4d;
+}
+
+.liste-puces,
+.liste-numeros,
+.liste-carres {
     margin: 0;
-    padding-left: 1.7rem;
+    padding-left: 1.5rem;
 }
 
-.carte__liste--puces   { list-style-type: disc; }
-.carte__liste--numeros { list-style-type: decimal; }
-.carte__liste--carres  { list-style-type: square; }
+.liste-puces {
+    list-style-type: disc;
+}
 
-.carte__liste li {
+.liste-numeros {
+    list-style-type: decimal;
+}
+
+.liste-carres {
+    list-style-type: square;
+}
+
+.liste-puces li,
+.liste-numeros li,
+.liste-carres li {
     margin: 8px 0;
-    padding-left: 4px;
     font-weight: 700;
 }
 
-.carte__liste li::marker {
-    color: var(--accent);
-}
-
-.carte__liste a {
+.liste-puces a,
+.liste-numeros a,
+.liste-carres a {
     display: block;
     padding: 8px 12px;
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.07);
-    transition: background-color 0.2s ease;
 }
 
-.carte__liste a:hover {
+.liste-puces a:hover,
+.liste-numeros a:hover,
+.liste-carres a:hover {
     background-color: rgba(255, 230, 0, 0.16);
 }
 
 
-/* ---------- 8. GALERIE VIDÉO ---------- */
-.galerie__grille {
+
+.galerie {
+    margin-top: 56px;
+}
+
+.grille-galerie {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
 }
 
-.galerie__video {
-    display: block;
+.video-galerie {
     width: 100%;
     aspect-ratio: 16 / 9;
-    object-fit: contain;                 /* la vidéo verticale n'est pas déformée */
-    border: 3px solid var(--noir);
+    object-fit: contain;
+    border: 3px solid #000000;
     border-radius: 10px;
-    background-color: var(--noir);
-    box-shadow: 0 0 0 2px var(--rouge);
+    background-color: #000000;
+    box-shadow: 0 0 0 2px #f80101;
 }
 
 
-/* ---------- 9. PIED DE PAGE ---------- */
+
 .pied {
     margin-top: 56px;
     padding-top: 20px;
@@ -415,61 +381,54 @@ video {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.pied p {
-    margin: 0;
-}
 
 
-/* ---------- 10. ACCESSIBILITÉ ---------- */
-
-/* Contour visible quand on navigue au clavier */
 a:focus-visible {
-    outline: 3px solid var(--jaune);
+    outline: 3px solid #ffe600;
     outline-offset: 3px;
 }
 
-.diaporama__radio:focus-visible ~ .diaporama__fenetre {
-    outline: 3px solid var(--jaune);
+.radio-cache:focus-visible ~ .cadre-diaporama {
+    outline: 3px solid #ffe600;
     outline-offset: 4px;
 }
 
-/* Petits écrans (téléphone) */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+
+/* ---------- 9. VERSION MOBILE (écrans petits) ---------- */
+
 @media (max-width: 600px) {
     body {
         border-width: 8px;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
     }
 
     .page {
         padding: 20px 12px 32px;
     }
 
-    .diaporama__fenetre {
+    .titre-principal {
+        font-size: 1.9rem;
+    }
+
+    .cadre-diaporama {
         aspect-ratio: 4 / 3;
     }
 
-    .diaporama__legende {
-        padding: 36px 56px 12px;
+    .legende {
+        padding: 30px 46px 12px;
+        font-size: 0.95rem;
     }
 
-    .diaporama__bouton {
-        width: 38px;
-        height: 38px;
-        font-size: 1.15rem;
-    }
-
-    .diaporama__bouton--precedent {
-        left: 8px;
-    }
-
-    .diaporama__bouton--suivant {
-        right: 8px;
-    }
-}
-
-/* Respecte les personnes qui réduisent les animations dans leur système */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
+    .bouton {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
     }
 }
