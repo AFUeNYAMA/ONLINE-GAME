@@ -35,21 +35,12 @@ video {
     max-width: 100%;
 }
 
-<<<<<<< HEAD
-=======
-/* Titre de chaque grande section (Ambiance, Où jouer ?, Galerie vidéo) */
->>>>>>> 68d95a94b75026598de8b004c77f961b47ef5bec
 .titre-section {
     font-family: "Orbitron", "Arial Black", Arial, sans-serif;
     font-size: 1.6rem;
     margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
-=======
-
-/* ---------- 2. EN-TÊTE ---------- */
->>>>>>> 68d95a94b75026598de8b004c77f961b47ef5bec
 
 .entete {
     margin-bottom: 36px;
@@ -185,12 +176,6 @@ video {
     background-color: #ff5fd0;
 }
 
-<<<<<<< HEAD
-=======
-/* C'est ici que la magie du diaporama se passe :               */
-/* quand un bouton radio est coché, on affiche l'image liée      */
-/* et on colore le point qui lui correspond.                     */
->>>>>>> 68d95a94b75026598de8b004c77f961b47ef5bec
 #diapo1:checked ~ .cadre-diaporama #slide1 {
     opacity: 1;
     visibility: visible;
@@ -440,8 +425,4 @@ a:focus-visible {
         height: 36px;
         font-size: 1.1rem;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 68d95a94b75026598de8b004c77f961b47ef5bec
