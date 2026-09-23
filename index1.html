@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONLINE GAMING FORM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Formulaire.css">
+</head>
+<body>
+    <main>
+        <header class="entete">
+            <h1 class="titre-principal">👾 ONLINE GAME 🎮</h1>
+            <h2 class="sous-titre">Bienvenue Sur Le Site De Jeux illegale 👾</h2>
+        </header>
+        <div class="grille-liens">    
+            <h2 class="titre-carte" id="titre-plateformes">Informations Personnelles</h2>
+                <form action="" method="post"class="nom">  
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" placeholder="Entrez votre nom" required minlength="2" maxlength="50">
+                </form>
+                <form action="" method="post"class="prenom">  
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required minlength="2" maxlength="50">
+                </form>
+                <form action="" method="post"class="email">  
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" placeholder="Entrez votre email" required>
+                </form>
+                <form action="" method="post"class="tel">  
+                    <label for="tel">Téléphone :</label>
+                    <input type="tel" id="tel" name="tel" placeholder="Entrez votre téléphone" required>
+                </form>
+                <button type="submit">Soumettre</button>
+        </div>
+        <div class="champs">
+           <label for="options">Votre PLATEFORME DE GAME PREFEREE :</label>
+            <select name="options" id="options">
+                <option value="">Sélectionnez une plateforme</option>
+                <option value="option1">STEAM</option>
+                <option value="option2">Xbox Game Pass</option>
+                <option value="option3">PlayStation Store</option>
+                <option value="option4">Nintendo eShop</option>
+                <option value="option5">Epic Games Store</option>
+                <option value="option6">Ubisoft Connect</option>
+            </select>
+        </div>
+        <div class="champs">
+           <label for="options">Votre Appareil De Gaming :</label>
+            <select name="options" id="options">
+                <option value="">Sélectionnez un appareil</option>
+                <option value="option1">STEAM DECK</option>
+                <option value="option2">Xbox Series X/S</option>
+                <option value="option3">PlayStation 5/5 Pro</option>
+                <option value="option4">Nintendo Switch</option>
+                <option value="option5">PC AMD RYZEN</option>
+                <option value="option6">PC INTEL CORE</option>
+            </select>
+            <fieldset>
+                <legend>Vos préférences de jeu</legend>
+                <input type="radio" id="checkbox1" name="checkbox1" value="option1">
+                <label for="checkbox1">Jouer en ligne</label>
+                <input type="radio" id="checkbox2" name="checkbox1" value="option2">
+                <label for="checkbox2">Jouer hors ligne</label>
+            </fieldset>
+            <div class="message">
+                <label for="file">Laissez Moi Un Message Mais Si Vous Avez Un Problemes C'est Pas Mon Probleme:</label>
+                <textarea id="message" name="message" placeholder="Entrez votre message ici..." required></textarea>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>
