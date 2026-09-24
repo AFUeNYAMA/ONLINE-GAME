@@ -58,7 +58,7 @@ video {
 
 .sous-titre {
     font-family: "Orbitron", "Arial Black", Arial, sans-serif;
-    font-size: 2rem;*
+    font-size: 2rem;
 }
 
 .auteur {
@@ -157,24 +157,6 @@ video {
     right: 12px;
 }
 
-.points {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 16px;
-}
-
-.point {
-    width: 16px;
-    height: 16px;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.point:hover {
-    background-color: #ff5fd0;
-}
 
 #diapo1:checked ~ .cadre-diaporama #slide1 {
     opacity: 1;
@@ -205,13 +187,28 @@ video {
     opacity: 1;
     visibility: visible;
 }
+#diapo7:checked ~ .cadre-diaporama #slide7 {
+    opacity: 1;
+    visibility: visible;
+}
+#diapo8:checked ~ .cadre-diaporama #slide8 {
+    opacity: 1;
+    visibility: visible;
+}
+#diapo9:checked ~ .cadre-diaporama #slide9 {
+    opacity: 1;
+    visibility: visible;
+}
 
 #diapo1:checked ~ .points #point1,
 #diapo2:checked ~ .points #point2,
 #diapo3:checked ~ .points #point3,
 #diapo4:checked ~ .points #point4,
 #diapo5:checked ~ .points #point5,
-#diapo6:checked ~ .points #point6 {
+#diapo6:checked ~ .points #point6 
+#diapo8:checked ~ .points #point7, 
+#diapo6:checked ~ .points #point8, 
+#diapo6:checked ~ .points #point9 {
     background-color: #ffe600;
     border-color: #ffe600;
 }
