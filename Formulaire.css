@@ -14,7 +14,7 @@ body {
     border: 12px solid #000000;
 }
 .grille-liens {
-  background:rgba(255, 255, 255, 0.943); 
+  background:#ffffff5e; 
   backdrop-filter: blur(6px);          
   border: 6px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
@@ -32,6 +32,9 @@ body {
 
 .titre-carte {
     color: hwb(317 0% 79%);
+    background-size: 40px 40px;
+    filter: drop-shadow(0 0 3px rgba(255, 95, 208, 0.3));
+    margin: 0;
 }
 .nom, .prenom, .email, .tel {
    color: hwb(0 0% 100%);
@@ -45,4 +48,32 @@ body {
     text-shadow:
         0 0 8px #ff5fd0,
         0 0 24px #f2020e;
+}
+summary {
+  cursor: pointer;
+  color: #e5ff00;
+}
+.avertissement {
+  color: hsl(62, 100%, 50%);
+  font-weight: bold;
+}
+.luetapprovés {
+  color: hwb(69 2% 8%);
+  font-weight: bold;
+  text-decoration: underline;
+}
+.ans18 {
+  color: hwb(69 2% 8%);
+  font-weight: bold;
+  text-decoration: underline;
+}
+.bouton {
+    background-color:hwb(317 0% 79%);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: #14001f;
 }
