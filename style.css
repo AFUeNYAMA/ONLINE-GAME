@@ -200,21 +200,6 @@ video {
     visibility: visible;
 }
 
-#diapo1:checked ~ .points #point1,
-#diapo2:checked ~ .points #point2,
-#diapo3:checked ~ .points #point3,
-#diapo4:checked ~ .points #point4,
-#diapo5:checked ~ .points #point5,
-#diapo6:checked ~ .points #point6 
-#diapo8:checked ~ .points #point7, 
-#diapo6:checked ~ .points #point8, 
-#diapo6:checked ~ .points #point9 {
-    background-color: #ffe600;
-    border-color: #ffe600;
-}
-
-
-
 .ambiance {
     margin-top: 56px;
 }
@@ -249,7 +234,6 @@ video {
 }
 
 
-/* ---------- 5. CARTES DE LIENS ---------- */
 
 .sites {
     margin-top: 56px;
@@ -384,42 +368,107 @@ a:focus-visible {
     outline-offset: 4px;
 }
 
-
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
+.tableau-sites {
+  width: 100%;
+  border-collapse: collapse; 
+  background:#ffffff5e;       
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  color: #fff; 
+  padding: 4px;
+  margin: 40px auto;
+  max-width: 900px; 
+  overflow: hidden;
+  border-radius: 14px;
 }
 
+.tableau-sites th,
+.tableau-sites td {
+  border: 1px solid rgba(0, 0, 0, 0.151); 
+  padding: 8px;         
+  text-align: left;  
+}
 
-/* ---------- 9. VERSION MOBILE (écrans petits) ---------- */
+.tableau-sites th {
+  background-color:hsl(0, 100%, 1%);
+}
 
-@media (max-width: 600px) {
+/* ---------- VERSION MOBILE ---------- */
+@media (max-width: 600px) {   /* Responsive Design */
+
+    /* Base générale */
     body {
         border-width: 8px;
         font-size: 1.05rem;
+        display: flex;              /*  Flexbox */
+        flex-direction: column;     /*  Flexbox */
+        align-items: center;        /*  Flexbox */
+        background: rgba(20, 0, 31, 0.9); /* effet transparent */
+        animation: fadeIn 1s ease-in-out; /*  Animation CSS */
     }
 
+    /*  CSS Grid */
     .page {
         padding: 20px 12px 32px;
+        display: grid;              /*  CSS Grid */
+        grid-template-columns: 1fr; /*  CSS Grid */
+        gap: 20px;                  /*  CSS Grid */
     }
 
+    /*  Titre principal */
     .titre-principal {
         font-size: 1.9rem;
+        text-align: center;
+        animation: pulse 2s infinite; /*  Animation CSS */
     }
 
+    /* Diaporama */
     .cadre-diaporama {
         aspect-ratio: 4 / 3;
+        display: flex;              /*  Flexbox */
+        justify-content: center;    /*  Flexbox */
+        align-items: center;        /*  Flexbox */
+        border-radius: 12px;
+        overflow: hidden;
     }
 
+    /* Légende */
     .legende {
-        padding: 30px 46px 12px;
+        padding: 30px 20px 12px;
         font-size: 0.95rem;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.4); /* effet transparent */
+        border-radius: 8px;
     }
 
+    /* Boutons */
     .bouton {
         width: 36px;
         height: 36px;
         font-size: 1.1rem;
+        display: flex;              /*  Flexbox */
+        justify-content: center;    /*  Flexbox */
+        align-items: center;        /*  Flexbox */
+        border-radius: 50%;
+        background: #ffe600;
+        color: #14001f;
+        transition: transform 0.3s ease; /*  Animation CSS */
+    }
+
+    .bouton:hover {
+        transform: scale(1.2); /*  Animation CSS (hover) */
     }
 }
+
+/*  Animations */
+@keyframes fadeIn {   /*  Animation CSS */
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {    /*  Animation CSS */
+    0% { color: #ffe600; }
+    50% { color: #f303a7; }
+    100% { color: #ffe600; }
+}
+
+
