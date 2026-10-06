@@ -21,6 +21,15 @@
         </header>
         <section class="grille-liens" aria-labelledby="titre-formulaire">
             <h2 class="titre-carte" id="titre-formulaire">Personnalisons votre espace</h2>
+            <div class="form-progress" aria-label="Progression du formulaire">
+                <div class="form-progress__texte">
+                    <span>Configuration du profil</span>
+                    <span id="progression-texte" aria-live="polite">0 % terminé</span>
+                </div>
+                <div class="form-progress__piste">
+                    <span id="progression-barre"></span>
+                </div>
+            </div>
             <form action="main.html" method="get">
                 <div class="nom">
                     <div>
@@ -105,6 +114,7 @@
             <p>© 2026 Seka Alexandre Davis — Come Play Here</p>
         </footer>
     </main>
+    <script src="gaming.js" defer></script>
 </body>
 
 </html>

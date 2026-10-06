@@ -25,7 +25,8 @@
 
         <main>
 
-            <section class="diaporama" aria-label="Jeux à la une">
+            <section class="diaporama" role="region" aria-label="Jeux à la une" aria-roledescription="carrousel"
+                tabindex="0">
 
                 <input class="radio-cache" type="radio" name="diapo" id="diapo1" aria-label="Image 1">
                 <input class="radio-cache" type="radio" name="diapo" id="diapo2" aria-label="Image 2">
@@ -44,8 +45,8 @@
                             <img src="IMAGE/Forza-Horizon-6.webp" alt="Forza Horizon 6">
                         </a>
                         <figcaption class="legende">Forza Horizon 6</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo9" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo2" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <!-- Image 2 : Marvel's Spider-Man 2 -->
@@ -54,8 +55,8 @@
                             <img src="IMAGE/marvel_s_spider_man_2_desktop_wallpaper_by_crillyboy25_dg8wiuo-pre.jpg" alt="Marvel's Spider-Man 2">
                         </a>
                         <figcaption class="legende">Marvel's Spider-Man 2</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo1" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo3" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <!-- Image 3 : EA Sports FC 26 -->
@@ -64,8 +65,8 @@
                             <img src="IMAGE/wp15596323.jpg" alt="EA Sports FC 26">
                         </a>
                         <figcaption class="legende">EA Sports FC 26</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo2" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo4" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <!-- Image 4 : Call of Duty Black Ops Cold War -->
@@ -74,8 +75,8 @@
                             <img src="IMAGE/R.jpg" alt="Call of Duty : Black Ops Cold War">
                         </a>
                         <figcaption class="legende">Call of Duty : Black Ops Cold War</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo3" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo5" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <!-- Image 5 : NBA 2K27 -->
@@ -84,8 +85,8 @@
                             <img src="IMAGE/1786716056-8938-card.jpg" alt="NBA 2K27">
                         </a>
                         <figcaption class="legende">NBA 2K27</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo4" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo6" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <!-- Image 6 : Marvel's Avengers -->
@@ -94,8 +95,8 @@
                             <img src="IMAGE/0.jpg" alt="Marvel's Avengers">
                         </a>
                         <figcaption class="legende">Marvel's Avengers</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo5" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo7" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <figure class="image-diapo" id="slide7">
@@ -103,8 +104,8 @@
                             <img src="IMAGE/266714-gta-5-wallpaper.jpg" alt="Grand Theft Auto V">
                         </a>
                         <figcaption class="legende">Grand Theft Auto V</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo6" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo8" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <figure class="image-diapo" id="slide8">
@@ -112,8 +113,8 @@
                             <img src="IMAGE/open-graph-dragon-ball-sparking-zero.jpg" alt="Dragon Ball Sparking Zero">
                         </a>
                         <figcaption class="legende">Dragon Ball Sparking Zero</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo7" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo9" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
                     <figure class="image-diapo" id="slide9">
@@ -121,10 +122,16 @@
                             <img src="IMAGE/naruto_cover.jpg" alt="Naruto x Boruto: Ultimate Ninja Storm Connections">
                         </a>
                         <figcaption class="legende">Naruto x Boruto: Ultimate Ninja Storm Connections</figcaption>
-                        <label class="bouton bouton-precedent" for="diapo8" aria-label="Image précédente">&#10094;</label>
-                        <label class="bouton bouton-suivant" for="diapo1" aria-label="Image suivante">&#10095;</label>
+                        <button class="bouton bouton-precedent" type="button" data-diapo-direction="-1" aria-label="Image précédente">&#10094;</button>
+                        <button class="bouton bouton-suivant" type="button" data-diapo-direction="1" aria-label="Image suivante">&#10095;</button>
                     </figure>
 
+                </div>
+                <div class="commandes-diaporama">
+                    <p id="diapo-etat" aria-live="polite">Jeu 8 sur 9</p>
+                    <button class="commande-lecture" id="diapo-lecture" type="button" aria-pressed="false">
+                        Lancer le diaporama
+                    </button>
                 </div>
 
             </section>
@@ -238,6 +245,7 @@
         </footer>
 
     </div>
+    <script src="gaming.js" defer></script>
 </body>
 
 </html>

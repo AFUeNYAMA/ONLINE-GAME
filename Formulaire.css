@@ -77,6 +77,41 @@ main {
     text-align: center;
 }
 
+.form-progress {
+    margin: -7px 0 24px;
+}
+
+.form-progress__texte {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+    color: var(--texte-secondaire);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+#progression-texte {
+    color: var(--accent);
+}
+
+.form-progress__piste {
+    height: 7px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+#progression-barre {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent), var(--accent-secondaire));
+    box-shadow: 0 0 16px rgba(105, 230, 194, 0.42);
+    transition: width 220ms ease;
+}
+
 .nom {
     display: grid;
     gap: 18px;

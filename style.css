@@ -142,7 +142,9 @@ video {
     background-color: rgba(0, 0, 0, 0.7);
     color: #ffffff;
     font-size: 1.3rem;
+    font-family: inherit;
     cursor: pointer;
+    padding: 0;
 }
 
 .bouton:hover {
@@ -155,6 +157,46 @@ video {
 
 .bouton-suivant {
     right: 12px;
+}
+
+.commandes-diaporama {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 960px;
+    margin: 14px auto 0;
+    color: var(--texte-secondaire);
+    font-size: 1rem;
+}
+
+.commandes-diaporama p {
+    margin: 0;
+}
+
+.commande-lecture {
+    padding: 9px 15px;
+    border: 1px solid var(--bordure);
+    border-radius: 999px;
+    color: var(--texte);
+    background: var(--surface);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.commande-lecture:hover,
+.commande-lecture[aria-pressed="true"] {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(105, 230, 194, 0.08);
+}
+
+.commande-lecture:focus-visible,
+.bouton:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
 }
 
 
@@ -691,6 +733,17 @@ a:focus-visible,
     outline-offset: 4px;
 }
 
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @keyframes arrivee {
     from {
         opacity: 0;
@@ -735,6 +788,10 @@ a:focus-visible,
         padding: 42px 52px 12px;
     }
 
+    .commandes-diaporama {
+        align-items: flex-start;
+    }
+
     .bouton {
         width: 36px;
         height: 36px;
@@ -769,4 +826,3 @@ a:focus-visible,
         transition-duration: 0.01ms !important;
     }
 }
-
